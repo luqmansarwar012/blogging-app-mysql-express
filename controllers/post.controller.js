@@ -1,6 +1,6 @@
-const index = (req, res) => {
-  console.log("index");
-  res.send("index");
+const posts = (req, res) => {
+  console.log("posts");
+  res.send("posts");
 };
 
-module.exports = { index };
+module.exports = { posts };

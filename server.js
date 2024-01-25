@@ -1,9 +1,11 @@
 const express = require("express");
 const postsRoute = require("./routes/posts");
+const indexRoute = require("./routes/index");
 require("dotenv").config();
 const app = express();
 
 // App routes
+app.use("/", indexRoute);
 app.use("/posts", postsRoute);
 
 // Listening to port
