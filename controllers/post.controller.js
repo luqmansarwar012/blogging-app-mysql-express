@@ -14,5 +14,17 @@ const createPost = (req, res) => {
       res.status(500).json({ message: "something went wrong", error });
     });
 };
+const getPostById = (req, res) => {
+  const postId = req.params.postId;
+  // fetinching  post by its id
+  models.Post.findByPk(postId)
+    .then((result) => {
+      console.log(result);
+      res.status(200).json(result);
+    })
+    .catch((error) => {
+      res.status(500).json({ message: "something went wrong" });
+    });
+};
 
-module.exports = { createPost };
+module.exports = { createPost, getPostById };
