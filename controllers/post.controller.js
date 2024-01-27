@@ -62,4 +62,23 @@ const updatePost = (req, res) => {
     });
 };
 
-module.exports = { createPost, getPostById, getAllPosts, updatePost };
+// Deleting a post by id
+const deletePost = (req, res) => {
+  const postId = req.params.postId;
+  // deleting post from database
+  models.Post.destroy({ where: { id: postId, userId: 1 } })
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).json({ message: "something went wrong", error });
+    });
+};
+module.exports = {
+  createPost,
+  getPostById,
+  getAllPosts,
+  updatePost,
+  deletePost,
+};
