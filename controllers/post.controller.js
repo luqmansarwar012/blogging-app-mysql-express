@@ -23,7 +23,9 @@ const getPostById = (req, res) => {
   // fetinching  post by its id
   models.Post.findByPk(postId)
     .then((result) => {
-      console.log(result);
+      if (!result) {
+        return res.status(404).json({ message: "Post not found" });
+      }
       res.status(200).json(result);
     })
     .catch((error) => {
@@ -36,6 +38,9 @@ const getAllPosts = (req, res) => {
   // fetching all the posts
   models.Post.findAll()
     .then((result) => {
+      if (!result) {
+        return res.status(404).json({ message: "No posts found" });
+      }
       res.status(200).json(result);
     })
     .catch((error) => {
@@ -54,6 +59,9 @@ const updatePost = (req, res) => {
   // Updating Post in database
   models.Post.update(postToUpdate, { where: { userId: 1, id: postId } })
     .then((result) => {
+      if (!result) {
+        return res.status(404).json({ message: "Post not found" });
+      }
       res.status(200).json(result);
     })
     .catch((error) => {
@@ -68,6 +76,9 @@ const deletePost = (req, res) => {
   // deleting post from database
   models.Post.destroy({ where: { id: postId, userId: 1 } })
     .then((result) => {
+      if (!result) {
+        return res.status(404).json({ message: "Post not found" });
+      }
       res.status(200).json(result);
     })
     .catch((error) => {
