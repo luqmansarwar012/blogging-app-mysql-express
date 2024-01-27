@@ -4,6 +4,10 @@ const indexRoute = require("./routes/index");
 require("dotenv").config();
 const app = express();
 
+// Parsing requests data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // App routes
 app.use("/", indexRoute);
 app.use("/posts", postsRoute);
