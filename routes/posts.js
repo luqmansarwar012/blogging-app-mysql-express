@@ -6,10 +6,13 @@ const {
   updatePost,
   deletePost,
 } = require("../controllers/post.controller");
-
+const {
+  createPostValidation,
+  createPostValidator,
+} = require("../validations/createPostValidator");
 const router = express.Router();
 
-router.post("/create", createPost);
+router.post("/create", createPostValidation, createPostValidator, createPost);
 router.get("/get", getAllPosts);
 router.get("/get/:postId", getPostById);
 router.patch("/update/:postId", updatePost);
