@@ -1,5 +1,6 @@
 const express = require("express");
 const postsRoute = require("./routes/posts");
+const userRoute = require("./routes/user");
 const indexRoute = require("./routes/index");
 require("dotenv").config();
 const app = express();
@@ -11,6 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 // App routes
 app.use("/", indexRoute);
 app.use("/posts", postsRoute);
+app.use("/user", userRoute);
 
 // Listening to port
 const port = process.env.PORT || 8080;
