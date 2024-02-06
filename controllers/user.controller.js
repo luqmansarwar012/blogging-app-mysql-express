@@ -43,4 +43,8 @@ const login = (req, res) => {
       res.status(500).json({ message: "Something went wrong" });
     });
 };
-module.exports = { signup, login };
+
+const test = (req, res) => {
+  res.status(200).json({ message: "success", user: req.user });
+};
+module.exports = { signup, login, test };
